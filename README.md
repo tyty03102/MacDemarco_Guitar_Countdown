@@ -43,4 +43,4 @@ If you don't want to host your own, you can invite my running bot to your server
 See the step-by-step guide: [How to Make a Discord Bot](HOW_TO_MAKE_A_DISCORD_BOT.md)
 
 ## License
-This project is licensed under the [MIT License](LICENSE). See the LICENSE file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
