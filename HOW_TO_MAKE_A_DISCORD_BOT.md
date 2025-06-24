@@ -26,6 +26,7 @@ This guide will walk you through setting up your own Discord bot using this repo
    ```
    DISCORD_TOKEN=your_bot_token_here
    ```
+## **UPDATE YOUR NEW BOT TOKEN WITH THIS ONE HERE**
 
 ## 5. Install Dependencies
 Make sure you have Python 3.8 or higher installed. Then run:
