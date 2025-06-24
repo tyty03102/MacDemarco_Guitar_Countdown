@@ -7,6 +7,10 @@ This Discord bot updates its status every hour with a countdown to Mac DeMarco's
 - Status format: `Xd Yh until Mac Demarcos New Album Guitar!`
 - Once the album is out, status changes to: `Mac Demarcos New Album Guitar is out now!`
 
+## Invite My Hosted Bot
+If you don't want to host your own, you can invite my running bot to your server using this link:
+[Invite Mac DeMarco Countdown Bot](https://discord.com/oauth2/authorize?client_id=1387152142044893306&permissions=0&integration_type=0&scope=bot)
+
 ## Getting Started
 
 ### 1. Clone the Repository
@@ -30,10 +34,6 @@ DISCORD_TOKEN=your_bot_token_here
 ```sh
 python main.py
 ```
-
-## Invite My Hosted Bot
-If you don't want to host your own, you can invite my running bot to your server using this link:
-[Invite Mac DeMarco Countdown Bot](https://discord.com/oauth2/authorize?client_id=1387152142044893306&permissions=0&integration_type=0&scope=bot)
 
 ## Customization
 - To use your own countdown, change the `release_time` variable in `main.py`.
