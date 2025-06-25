@@ -1,4 +1,5 @@
 import discord
+from discord import app_commands
 import asyncio
 from datetime import datetime, timedelta
 import pytz
@@ -18,6 +19,7 @@ release_time = phoenix.localize(datetime(2025, 8, 21, 21, 0))
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
+tree = app_commands.CommandTree(client)
 
 def load_cache():
     if os.path.exists(CACHE_FILE):
@@ -31,6 +33,20 @@ def load_cache():
 def save_cache(data):
     with open(CACHE_FILE, "w") as f:
         json.dump(data, f)
+
+def get_countdown_text():
+    """Get the current countdown text with exact days, hours, minutes, and seconds"""
+    now = datetime.now(phoenix)
+    delta = release_time - now
+    
+    if delta.total_seconds() > 0:
+        days = delta.days
+        hours = delta.seconds // 3600
+        minutes = (delta.seconds % 3600) // 60
+        seconds = delta.seconds % 60
+        return f"{days}d {hours}h {minutes}m {seconds}s until Mac Demarco's \"Guitar\" Album!"
+    else:
+        return "Mac Demarco's Guitar Album is out now!"
 
 async def update_status():
     await client.wait_until_ready()
@@ -59,9 +75,21 @@ async def update_status():
         sleep_seconds = (next_hour - now).total_seconds()
         await asyncio.sleep(sleep_seconds)
 
+@tree.command(name="countdown", description="Get the exact countdown to Mac DeMarco's Guitar album")
+async def countdown_command(interaction: discord.Interaction):
+    countdown_text = get_countdown_text()
+    embed = discord.Embed(
+        title="🎸 Mac DeMarco - Guitar Album Countdown",
+        description=countdown_text,
+        color=0x00ff00 if "out now" in countdown_text else 0xff6b6b
+    )
+    embed.set_footer(text="Release Date: August 21, 2025 at 9:00 PM Phoenix Time")
+    await interaction.response.send_message(embed=embed)
+
 @client.event
 async def on_ready():
     print(f"Logged in as {client.user}")
+    await tree.sync()
     client.loop.create_task(update_status())
 
 client.run(TOKEN)
